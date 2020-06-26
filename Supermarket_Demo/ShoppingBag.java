@@ -1,42 +1,40 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 public class ShoppingBag{
-    private String id;
-    private int quantity;
-    private List<Item> shopppingBagList;
+    private Map<Item, Integer> ShoppingBagMap;
 
-    public ShoppingBag(){
-        shoppingBagList = new ArrayList<>();
-        // this code may not work
-        // this.shoppingBagList = shoppingBagList;
+    public ShoppingBag{
+        ShoppingBagMap = new HashMap<>();
     }
 
-    // set products
-    public void setProduct(String id, int quantity){
+    public void setProduct(String id, int quantity) throws InputNumberExce@tion, NumberFormatException{
+        if(quantity <= 0){
+            throw new NumberFormatException("購入商品の個数を正数値を入力してください！");
+        }
         if(id.equals("")){
-            System.out.println("商品番号が入力必須項目です。");
+            throw new InputNumberException("商品番号が入力必須項目です！");
         }else{
             Item item = Item.getById(id);
             if(item == null){
-                System.out.println("商品番号の商品を取り扱っていません。");
+                throw new InputNumberException("商品" + id + "番号の商品を取り扱っていません！")
             }else{
-                for(int i = 0; i < quantity; i++){
-                    shoppingBagList.add(item);
+                if(shoppingBagMap.containsKey(item)){
+                    shoppingBagMap.put(item, shoppingBagMap.get((item) + quantity));
+                }else{
+                    shoppingBagMap.put(item, quantity);
                 }
             }
         }
     }
 
-    // output products
     public void printProduct(){
-        for(Item item : shoppingBagList){
-            System.out.println(item);
+        for(Map.Entry<item, Integer> entry : shoppingBagMap.entrySet()){
+            System.out.println(entry.getKey().toString() + " : " + entry.getValue() + "個");
         }
     }
-
-    // get shoppingBagList
-    public List<Item> getShoppingBagList(){
-        return shoppingBagList;
+    
+    public Map<Item, Integer> getShoppingBagMap(){
+        return shoppingBagMap;
     }
 }

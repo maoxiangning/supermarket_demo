@@ -1,14 +1,22 @@
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
-public class TotalPriceCases{
+public class TotalPrice{
     private final int PRODUCT_TAX = 8;
+    private int total;
+    private int totalDiscount;
+    private int cigaretteTotalPrice;
+    private int appleQuantity;
+    private int salesOfApple;
+    private int bentouQuantity;
+    private int drinkQuantity;
+    private int salesOfFood;
 
-    // maybe not necessary
-    /*
-    public TotalPriceCases(){
-
+    public TotalPrice(){
+        this.total = 0;
+        this.totalDiscount = 0;
+        this.cigaretteTotalPrice = 0;
     }
-    */
 
     // calculate total price
     public void totalPriceCases(ShoppingBag shoppingBag){
